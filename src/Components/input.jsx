@@ -1,12 +1,14 @@
-import { useContext } from "react";
+import { useContext, useState} from "react";
 import { InputContext } from "../Context/inputContext";
 
+
 const Input = () => {
-  const { input, setInput } = useContext(InputContext);
+  const { setInput } = useContext(InputContext);
+  const [submittedName, setSubmittedName] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(input);
+    setInput(submittedName);
   };
 
   return (
@@ -15,10 +17,10 @@ const Input = () => {
         <input
           type="text"
           placeholder="Write your name..."
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
+          value={submittedName}
+          onChange={(e) => setSubmittedName(e.target.value)}
         />
-        <button type="submit">Submit</button>
+        <button  onClick={handleSubmit} type="submit">Submit</button>
       </form>
     </div>
   );
